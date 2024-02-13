@@ -14,4 +14,5 @@ public class User
     public string UserName { get; set; } = null!;
     public string Password { get; set; } = null!;
     public string? Phone {  get; set; }
+    public UserType UserType { get; set; }
 }
