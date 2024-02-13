@@ -12,6 +12,7 @@ public class AccountantContext:DbContext
 {
     public DbSet<Invoice> Invoices => Set<Invoice>();
     public DbSet<InvoiceItem> InvoiceItems => Set<InvoiceItem>();
+    public DbSet<User> Users => Set<User>();
 
     public AccountantContext(DbContextOptions<AccountantContext> options)
         : base(options)

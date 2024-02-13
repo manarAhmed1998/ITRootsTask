@@ -1,7 +1,31 @@
+using Accountant.BL;
+using Accountant.DAL;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+#region Services & context
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//configure context service in the Dependency injection containe(for when any class requests a context in the ctor)
+var connectionString = builder.Configuration.GetConnectionString("Accountant_Connection_String");
+builder.Services.AddDbContext<AccountantContext>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<IInvoicesRepo, InvoicesRepo>();
+builder.Services.AddScoped<IInvoiceItemsRepo, InvoiceItemsRepo>();
+builder.Services.AddScoped<IUsersRepo, UsersRepo>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddScoped<IInvoiceManager, InvoiceManager>();
+builder.Services.AddScoped<IInvoiceItemsManager, InvoiceItemsManager>();
+builder.Services.AddScoped<IUsersManager, UsersManager>();
+
+#endregion
+
 
 var app = builder.Build();
 
@@ -22,6 +46,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();

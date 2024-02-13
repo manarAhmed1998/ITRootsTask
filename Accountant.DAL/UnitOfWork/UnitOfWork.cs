@@ -15,13 +15,17 @@ public class UnitOfWork : IUnitOfWork
     public IInvoiceItemsRepo InvoiceItemsRepo { get;}
     public IInvoicesRepo InvoicesRepo { get;}
 
+    public IUsersRepo UsersRepo {  get;}
+
     public UnitOfWork(AccountantContext context,
         IInvoicesRepo invoicesRepo,
-        IInvoiceItemsRepo invoiceItemsRepo)
+        IInvoiceItemsRepo invoiceItemsRepo,
+        IUsersRepo usersRepo)
     {
         _context = context;
         InvoicesRepo = invoicesRepo;
         InvoiceItemsRepo = invoiceItemsRepo;
+        UsersRepo = usersRepo;
     }
     public int Save()
     {
