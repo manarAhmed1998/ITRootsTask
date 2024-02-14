@@ -10,8 +10,7 @@ namespace Accountant.DAL;
 public class Invoice
 {
     public Guid Id { get; set; }
-    public DateTime Date { get; set; }
-    public decimal Total {  get; set; }
+    public DateTime Date { get; set; }=DateTime.Now;
     public ICollection<InvoiceItem>? InvoiceItems { get; set; }
         =new HashSet<InvoiceItem>();
 }

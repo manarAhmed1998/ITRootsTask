@@ -14,6 +14,13 @@
         <label for="Password">Password:</label>
         <input type="password" class="form-control" id="Password" name="Password" asp-for="Password" required>
     </div>
+    <br />
+    <div>
+        <label asp-for="UserType">User Type</label>
+        <select asp-for="UserType" asp-items="Html.GetEnumSelectList<UserType>()"></select>
+    </div>
+    <br /><br />
+
 
     <button type="submit" class="btn btn-primary">Login</button>
 

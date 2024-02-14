@@ -24,7 +24,6 @@ public class InvoiceManager : IInvoiceManager
         var invoice = new Invoice
         {
             Id = Guid.NewGuid(),
-            Total = invoiceToAdd.Total,
             Date = invoiceToAdd.Date,
             InvoiceItems = invoiceToAdd.InvoiceItems
         };
@@ -40,7 +39,6 @@ public class InvoiceManager : IInvoiceManager
             {
                 Id = i.Id,
                 Date = i.Date,
-                Total = i.Total,
                 InvoiceItems = i.InvoiceItems
             });
         return invoicesVM;
@@ -56,7 +54,6 @@ public class InvoiceManager : IInvoiceManager
             {
                 Id = id,
                 Date = invoice.Date,
-                Total = invoice.Total,
                 InvoiceItems = invoice.InvoiceItems
             };
             return invoiceVM;

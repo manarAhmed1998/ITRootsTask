@@ -1,0 +1,55 @@
+﻿@model IEnumerable<InvoiceReadVM>
+
+<h2 class="text text-center text-muted">Invoices</h2>
+
+<div>
+    <a id="createButton" class="btn btn-primary mb-3" >Create New Invoice</a>
+</div>
+<div id="CreatepartialView">
+    <!-- This the the create partial view-->
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Invoice ID</th>
+            <th>Invoice Date</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var invoice in Model)
+        {
+            <tr>
+                <td>@invoice.Id</td>
+                <td>@invoice.Date.ToShortDateString()</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            foreach (var item in invoice.InvoiceItems)
+            {
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>@item.Description</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Price</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#createButton').click(function (event) {
+                console.log("HI");
+                $('#CreatepartialView').load('@Url.Action("CreateInvoicePartial", "Invoice")');
+            });
+        });
+    </script>
+}

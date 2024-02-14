@@ -2,3 +2,6 @@
 
 # CS8321: Local function is declared but never used
 dotnet_diagnostic.CS8321.severity = none
+
+# CS8602: Dereference of a possibly null reference.
+dotnet_diagnostic.CS8602.severity = none

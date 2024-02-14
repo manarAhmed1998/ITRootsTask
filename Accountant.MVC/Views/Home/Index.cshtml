@@ -1,8 +1,30 @@
-﻿@{
+﻿@model IEnumerable<UserReadVM>;
+@{
     ViewData["Title"] = "Home Page";
 }
+    <h1>Users</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Full Name</th>
+                <th>User Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.FullName</td>
+                    <td>@user.UserName</td>
+                    <td>@user.Phone</td>
+                    <td>@user.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
