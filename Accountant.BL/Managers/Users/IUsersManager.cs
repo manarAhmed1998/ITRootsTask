@@ -12,6 +12,7 @@ public interface IUsersManager
     void Add(UserAddVM userToAdd);
     IEnumerable<UserReadVM> GetAll();
     UserReadVM map(UserAddVM user);
+    User? getByUserName(string userName);
 
 
 }

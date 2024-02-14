@@ -5,9 +5,14 @@ VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accountant.MVC", "Accountant.MVC\Accountant.MVC.csproj", "{471EF229-5893-4491-9B11-184DF698C36E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accountant.DAL", "Accountant.DAL\Accountant.DAL.csproj", "{C405C1CD-DCA7-44A7-BCD2-6C6BDB49DDA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accountant.DAL", "Accountant.DAL\Accountant.DAL.csproj", "{C405C1CD-DCA7-44A7-BCD2-6C6BDB49DDA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accountant.BL", "Accountant.BL\Accountant.BL.csproj", "{B331F061-6A10-4936-AF03-CCB719376EF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accountant.BL", "Accountant.BL\Accountant.BL.csproj", "{B331F061-6A10-4936-AF03-CCB719376EF5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DB7215A9-75BE-4464-9EEB-386A62C4353C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

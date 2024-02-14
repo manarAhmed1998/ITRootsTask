@@ -8,4 +8,6 @@ namespace Accountant.DAL;
 
 public interface IUsersRepo:IGenericRepo<User>
 {
+    User? getByUserName(string userName);
+
 }

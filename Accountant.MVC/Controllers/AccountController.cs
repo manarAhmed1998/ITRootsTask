@@ -2,38 +2,69 @@
 using Accountant.DAL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using System.Diagnostics.Eventing.Reader;
 
-namespace Accountant.MVC.Controllers
+namespace Accountant.MVC.Controllers;
+
+public class AccountController : Controller
 {
-    public class AccountController : Controller
+    private readonly IUsersManager _usersManager;
+    public AccountController(IUsersManager usersManager)
     {
-        private readonly IUsersManager _usersManager;
-        public AccountController(IUsersManager usersManager)
+        _usersManager = usersManager;
+    }
+
+    #region Registration
+    [HttpGet]
+    public IActionResult Register()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Register(UserAddVM userToAdd)
+    {
+        if (ModelState.IsValid)
         {
-            _usersManager = usersManager;
+            _usersManager.Add(userToAdd);
+            return RedirectToAction("Login");
         }
+        else
+        {
+            //UserReadVM userToView = _usersManager.map(userToAdd);
+            return View(userToAdd);
+        }
+    }
+
+        #endregion
 
         [HttpGet]
-        public IActionResult Register()
+         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Register(UserAddVM userToAdd)
+         public IActionResult Login(UserLoginVM user)
         {
-            if (ModelState.IsValid)
+            if (user != null)
             {
-                _usersManager.Add(userToAdd);
-                return RedirectToAction("Login");
-            }
-            else
-            {
-                //UserReadVM userToView = _usersManager.map(userToAdd);
-                return View(userToAdd);
-            }
+                //1. Check if User Exists in DB 
+                User? userCheck = _usersManager.getByUserName(user.UserName);
+                //2. Check Correct Password and correct user type
+                if (userCheck.Password == user.Password && userCheck.UserType == user.UserType)
+                {
+                    //4. Make User Active
 
+
+                    //3. Redirect to Main Page 
+                    MyTempData.CurrentUser = userCheck;
+                    return RedirectToAction("Index", "Home");
+                }
+
+            }
+            return View(user);
         }
+
     }
-}

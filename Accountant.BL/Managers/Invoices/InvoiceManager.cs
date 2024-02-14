@@ -34,14 +34,14 @@ public class InvoiceManager : IInvoiceManager
 
     public IEnumerable<InvoiceReadVM> GetAll()
     {
-        var invoicesFromDB=_unitOfWork.InvoicesRepo.GetAll();
+        var invoicesFromDB=_invoicesRepo.GetInvoicesWithItems();
         IEnumerable<InvoiceReadVM> invoicesVM = invoicesFromDB
             .Select(i => new InvoiceReadVM
             {
                 Id = i.Id,
                 Date = i.Date,
                 Total = i.Total,
-                InvoiceItems=i.InvoiceItems
+                InvoiceItems = i.InvoiceItems
             });
         return invoicesVM;
     }

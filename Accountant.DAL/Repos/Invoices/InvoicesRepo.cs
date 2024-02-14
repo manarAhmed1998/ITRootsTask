@@ -15,4 +15,11 @@ public class InvoicesRepo : GenericRepo<Invoice>, IInvoicesRepo
     {
         _context = context;
     }
+
+    public IEnumerable<Invoice> GetInvoicesWithItems()
+    {
+        return _context.Invoices.Include(i => i.InvoiceItems);  
+            
+            
+    }
 }

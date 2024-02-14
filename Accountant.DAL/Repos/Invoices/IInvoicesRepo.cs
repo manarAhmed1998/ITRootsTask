@@ -8,4 +8,5 @@ namespace Accountant.DAL;
 
 public interface IInvoicesRepo:IGenericRepo<Invoice>
 {
+    IEnumerable<Invoice> GetInvoicesWithItems();
 }

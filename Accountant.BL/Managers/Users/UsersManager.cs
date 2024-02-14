@@ -57,6 +57,11 @@ public class UsersManager:IUsersManager
         return userReadVMs;
     }
 
+    public User? getByUserName(string userName)
+    {
+        return _usersRepo.getByUserName(userName);
+    }
+
     public UserReadVM map(UserAddVM user)
     {
         UserReadVM userReadVM = new UserReadVM()
