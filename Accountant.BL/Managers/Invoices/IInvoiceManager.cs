@@ -9,7 +9,7 @@ namespace Accountant.BL;
 
 public interface IInvoiceManager
 {
-     IEnumerable<InvoiceReadVM> GetAll();
+    IEnumerable<InvoiceReadVM> GetAll();
     void Add(InvoiceAddVM invoiceToAdd);
 
     InvoiceReadVM? GetById(Guid id);

@@ -1,4 +1,5 @@
 ﻿using Accountant.DAL;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,54 @@ public class UsersManager:IUsersManager
         _unitOfWork = unitOfWork;
         _usersRepo = usersRepo;
 
+    }
+
+    public void Add(UserAddVM userToAdd)
+    {
+        User user = new User()
+        {
+            Id=Guid.NewGuid(),
+            FullName = userToAdd.FullName,
+            UserName = userToAdd.UserName,
+            Password = userToAdd.Password,
+            Phone = userToAdd.Phone,
+            Email = userToAdd.Email
+        };
+        // add admin if there is no users
+        if (_usersRepo.GetAll()==null)
+        {
+            user.UserType = UserType.Admin;
+        }
+        else user.UserType = UserType.User;
+        _usersRepo.Add(user);
+        _unitOfWork.Save();
+        
+    }
+
+    public IEnumerable<UserReadVM> GetAll()
+    {
+        var usersFromDB= _usersRepo.GetAll();
+        IEnumerable<UserReadVM> userReadVMs = usersFromDB
+            .Select(u => new UserReadVM
+            {
+                Id = u.Id,
+                FullName = u.FullName,
+                UserName = u.UserName,
+                Phone = u.Phone,
+                Email = u.Email,
+            });
+        return userReadVMs;
+    }
+
+    public UserReadVM map(UserAddVM user)
+    {
+        UserReadVM userReadVM = new UserReadVM()
+        {
+            FullName=user.FullName,
+            UserName=user.UserName,
+            Phone = user.Phone,
+            Email = user.Email
+        };
+        return userReadVM;
     }
 }
