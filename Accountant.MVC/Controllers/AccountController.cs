@@ -72,8 +72,13 @@ public class AccountController : Controller
     [HttpGet]
     public IActionResult Edit(Guid Id)
     { 
-        return View();
+        User? userToEdit=_usersManager.getUserById(Id);
+        UserEditVM user = _usersManager.mapToEdit(userToEdit);
+        return View(user);
     }
+
+    [HttpPost]
+
 
     #endregion
 
@@ -85,7 +90,7 @@ public class AccountController : Controller
 
         _usersManager.Delete(userToRemove);
 
-        return RedirectToAction("Index","Account");
+        return RedirectToAction("Index","Home");
     }
     #endregion
 

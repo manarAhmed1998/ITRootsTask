@@ -15,6 +15,7 @@ public interface IUsersManager
     User? getByUserName(string userName);
     User? getUserById(Guid id);
     void Delete(User userToDelete);
+    UserEditVM mapToEdit(User userToUpdate);
 
 
 }

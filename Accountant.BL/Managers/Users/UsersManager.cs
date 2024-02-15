@@ -84,4 +84,17 @@ public class UsersManager : IUsersManager
         };
         return userReadVM;
     }
+
+    public UserEditVM mapToEdit(User userToUpdate)
+    {
+        UserEditVM userEditVM = new UserEditVM()
+        {
+            FullName=userToUpdate.FullName,
+            UserName=userToUpdate.UserName,
+            Phone = userToUpdate.Phone,
+            Email = userToUpdate.Email,
+            Password = userToUpdate.Password
+        }
+        as UserEditVM;
+    }
 }
