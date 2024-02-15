@@ -48,6 +48,16 @@ public class UsersManager : IUsersManager
         _unitOfWork.Save();
     }
 
+    public void Edit(UserEditVM user)
+    {
+        User? userToEdit=_usersRepo.GetById(user.Id);
+        userToEdit.UserName = user.UserName;
+        userToEdit.Password = user.Password;
+        userToEdit.Phone = user.Phone;
+        userToEdit.Email = user.Email;
+        _unitOfWork.Save();
+    }
+
     public IEnumerable<UserReadVM> GetAll()
     {
         var usersFromDB= _usersRepo.GetAll();

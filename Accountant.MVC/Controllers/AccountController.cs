@@ -78,8 +78,11 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-
-
+    public IActionResult Edit(UserEditVM userToEdit)
+    {
+        _usersManager.Edit(userToEdit);
+        return RedirectToAction("Index", "Home");
+    }
     #endregion
 
     #region Delete User
