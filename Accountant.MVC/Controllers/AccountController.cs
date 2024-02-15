@@ -69,6 +69,11 @@ public class AccountController : Controller
     #endregion
 
     #region Edit User
+    [HttpGet]
+    public IActionResult Edit(Guid Id)
+    { 
+        return View();
+    }
 
     #endregion
 
