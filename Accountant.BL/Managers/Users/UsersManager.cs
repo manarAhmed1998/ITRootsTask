@@ -89,12 +89,12 @@ public class UsersManager : IUsersManager
     {
         UserEditVM userEditVM = new UserEditVM()
         {
-            FullName=userToUpdate.FullName,
-            UserName=userToUpdate.UserName,
+            FullName = userToUpdate.FullName,
+            UserName = userToUpdate.UserName,
             Phone = userToUpdate.Phone,
             Email = userToUpdate.Email,
             Password = userToUpdate.Password
+        };
+        return userEditVM;
         }
-        as UserEditVM;
-    }
 }
