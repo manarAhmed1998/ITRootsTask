@@ -3,46 +3,49 @@
 <h2 class="text text-center text-muted">Invoices</h2>
 
 <div>
-    <a id="createButton" class="btn btn-primary mb-3" >Create New Invoice</a>
+    <a id="createButton" class="btn btn-primary mb-3" @*asp-action="CreateInvoice"*@>Create New Invoice</a>
 </div>
 <div id="CreatepartialView">
-    <!-- This the the create partial view-->
+    <!-- This the the create partial view-->a
 </div>
-
-
-<table class="table">
+<table class="table table-hover table-bordered">
     <thead>
         <tr>
-            <th>Invoice ID</th>
-            <th>Invoice Date</th>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Price</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>Products</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var invoice in Model)
         {
             <tr>
-                <td>@invoice.Id</td>
-                <td>@invoice.Date.ToShortDateString()</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td> @Html.DisplayFor(modelItem => invoice.Id) </td>
+                <td>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th> Name</th>
+                                <th> Quantity</th>
+                                <th> Price</th>
+                            </tr>
+                        </thead>
+                        @foreach (var product in invoice.InvoiceItems)
+                        {
+                            <tr>
+                                <td> @Html.DisplayFor(modelItem => product.Description) </td>
+                                <td> @Html.DisplayFor(modelItem => product.Quantity) </td>
+                                <td> @Html.DisplayFor(modelItem => product.Price) </td>
+                            </tr>
+                        }
+                    </table>
+                </td>
             </tr>
-            foreach (var item in invoice.InvoiceItems)
-            {
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>@item.Description</td>
-                    <td>@item.Quantity</td>
-                    <td>@item.Price</td>
-                </tr>
-            }
         }
     </tbody>
 </table>
+
 @section Scripts {
     <script>
         $(document).ready(function () {

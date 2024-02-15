@@ -13,6 +13,8 @@ public interface IUsersManager
     IEnumerable<UserReadVM> GetAll();
     UserReadVM map(UserAddVM user);
     User? getByUserName(string userName);
+    User? getUserById(Guid id);
+    void Delete(User userToDelete);
 
 
 }

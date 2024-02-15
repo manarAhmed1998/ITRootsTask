@@ -11,4 +11,5 @@ public interface IGenericRepo<T> where T:class
     public IEnumerable<T> GetAll();
     public T? GetById(Guid id);
     void Add(T obj);
+    void Delete(T obj);
 }

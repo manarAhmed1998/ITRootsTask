@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Accountant.BL;
 
-public class UsersManager:IUsersManager
+public class UsersManager : IUsersManager
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IUsersRepo _usersRepo;
@@ -42,6 +42,12 @@ public class UsersManager:IUsersManager
         
     }
 
+    public void Delete(User userToDelete)
+    {
+        _unitOfWork.UsersRepo.Delete(userToDelete);
+        _unitOfWork.Save();
+    }
+
     public IEnumerable<UserReadVM> GetAll()
     {
         var usersFromDB= _usersRepo.GetAll();
@@ -60,6 +66,11 @@ public class UsersManager:IUsersManager
     public User? getByUserName(string userName)
     {
         return _usersRepo.getByUserName(userName);
+    }
+
+    public User? getUserById(Guid id)
+    {
+        return _unitOfWork.UsersRepo.GetById(id);
     }
 
     public UserReadVM map(UserAddVM user)

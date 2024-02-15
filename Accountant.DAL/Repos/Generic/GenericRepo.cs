@@ -20,6 +20,11 @@ public class GenericRepo<T> : IGenericRepo<T> where T : class
         _context.Add(obj);
     }
 
+    public void Delete(T obj)
+    {
+        _context.Remove(obj);
+    }
+
     public IEnumerable<T> GetAll()
     {
         return _context.Set<T>();
@@ -29,4 +34,6 @@ public class GenericRepo<T> : IGenericRepo<T> where T : class
     {
         return _context.Set<T>().Find(id);
     }
+
+    
 }

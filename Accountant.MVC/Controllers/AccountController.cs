@@ -3,6 +3,7 @@ using Accountant.DAL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using Microsoft.VisualBasic;
 using System.Diagnostics.Eventing.Reader;
 
 namespace Accountant.MVC.Controllers;
@@ -37,9 +38,11 @@ public class AccountController : Controller
         }
     }
 
-        #endregion
+    #endregion
 
-        [HttpGet]
+    #region Login
+
+    [HttpGet]
          public IActionResult Login()
         {
             return View();
@@ -55,16 +58,30 @@ public class AccountController : Controller
                 //2. Check Correct Password and correct user type
                 if (userCheck.Password == user.Password && userCheck.UserType == user.UserType)
                 {
-                    //4. Make User Active
-
-
-                    //3. Redirect to Main Page 
                     MyTempData.CurrentUser = userCheck;
                     return RedirectToAction("Index", "Home");
                 }
 
             }
             return View(user);
+       
         }
+    #endregion
 
+    #region Edit User
+
+    #endregion
+
+    #region Delete User
+    [HttpPost]
+    public IActionResult Delete(Guid id)
+    {
+        User? userToRemove = _usersManager.getUserById(id);
+
+        _usersManager.Delete(userToRemove);
+
+        return RedirectToAction("Index","Account");
     }
+    #endregion
+
+}

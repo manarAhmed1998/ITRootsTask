@@ -25,13 +25,11 @@ namespace Accountant.MVC.Controllers
         }
 
 
-        public async Task<IActionResult> CreateNewInvoice([FromBody] Invoice invoice)
+        public async Task<IActionResult> CreateNewInvoice([FromBody] InvoiceAddVM invoice)
         {
-            if (invoice != null)
-            {
 
                 Invoice myinvoice = new Invoice();
-                myinvoice.Id = invoice.Id;
+                myinvoice.Id = Guid.NewGuid();
 
                 List<InvoiceItem> items = new List<InvoiceItem>();
                 foreach (var item in invoice.InvoiceItems)
@@ -47,7 +45,7 @@ namespace Accountant.MVC.Controllers
 
                 await _context.Invoices.AddAsync(myinvoice);
                 await _context.SaveChangesAsync();
-            }
+            
             return RedirectToAction("Index");
         }
     }
